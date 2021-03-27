@@ -15,12 +15,13 @@ public class ContabilidadUIA {
 		public ArrayList<ClienteJSP> listaProveedores = null;
 		public ArrayList<ClienteJSP> listaCuentas = null;
 		public ArrayList<ClienteJSP> listaCompras = null;
+		public ArrayList<ClienteJSP> listaCheques = null;
 		public Proveedor proveedor = null;
 		public String clienteId="";
 
 		public ContabilidadUIA()
 		{
-		 contabilidad = new Gestor("D:\\Ibero\\CUARTO\\ARQUITECTURA_SOFTWARE\\EXAMEN_02\\Examen_02\\ContabilidadUIA-web-MVC-JSP\\ListaProveedores.json");		
+		 contabilidad = new Gestor("D:\\Ibero\\CUARTO\\ARQUITECTURA_SOFTWARE\\EXAMEN_02\\Examen_02\\Git_Examen02\\ContabilidadUIA-web-MVC-JSP\\ListaProveedores.json");		
 		 gestorProveedores = new DecoradorProveedores(contabilidad, "proveedor");		 
 		 gestorProveedores.Print();
 		 listaProveedores = gestorProveedores.getLista();
@@ -88,12 +89,29 @@ public class ContabilidadUIA {
 			this.getCuentas(clienteId);
 			return listaCompras;
 		}
+		
+		public ArrayList<ClienteJSP> getCheques(String clienteId) {
+			this.clienteId = clienteId;
+			proveedor = (Proveedor) this.gestorProveedores.busca(clienteId);
+			listaCheques = proveedor.getListaCheques();
+			this.getCuentas(clienteId);
+			return listaCheques;
+		}
 
 		public ArrayList<ClienteJSP> getListaCompras(String clienteId) {
 			this.clienteId = clienteId;
 			getCompras(this.clienteId);
 			return listaCompras;
 		}
+		
+		public ArrayList<ClienteJSP> getListaCheques(String clienteId) {
+			this.clienteId = clienteId;
+			getCheques(this.clienteId);
+			return listaCheques;
+		}
+		
+		
+		
 
 		public ArrayList<ClienteJSP> getListaCompras() {
 			return listaCompras;
@@ -103,9 +121,8 @@ public class ContabilidadUIA {
 			return listaCuentas;
 		}
 		
-		
-		public ArrayList<ClienteJSP> getCheques(String clienteId2) {
-			// TODO Auto-generated method stub
-			return null;
+
+		public ArrayList<ClienteJSP> getListaCheques() {
+			return listaCheques;
 		}
 }

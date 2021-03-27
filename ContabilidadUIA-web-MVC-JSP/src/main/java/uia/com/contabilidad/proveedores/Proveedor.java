@@ -93,5 +93,73 @@ public class Proveedor extends InfoUIA
 		}
 		return listaJSP;
 	}
+	
+	/*
+	public ArrayList<ClienteJSP> getListaCheques() 
+	{
+		ClienteJSP cliente = null;
+		
+		if(listaJSP != null)
+		{		
+			listaJSP = new ArrayList<ClienteJSP>();
+		}
+		
+		if (this.items != null) 
+		{        
+			System.out.println("----- Lista -----");
+			
+            items.forEach(t->{
+    			if(t.getItems() != null)
+    			{
+    				t.getItems().forEach(p->
+    				{
+    					p.getItems().forEach(v->
+        				{
+        					v.getItems().forEach(x->
+            				{
+    					((List<ClienteJSP>) listaJSP).add(x.getClienteJSP());
+    					
+            				});
+        				});
+    				});
+    			}
+    		});
+		}
+		return listaJSP;
+	}
+	
+	*/
+	public ArrayList<ClienteJSP> getListaCheques() 
+	{
+		ClienteJSP cliente = null;
+		
+		if(listaJSP != null)
+		{		
+			listaJSP = new ArrayList<ClienteJSP>();
+		}
+		
+		if (this.items != null) 
+		{        
+			System.out.println("----- Lista -----");
+			
+            items.forEach(t->{
+    			if(t.getItems() != null)
+    			{
+    				t.getItems().forEach(p->
+    				{
+    					p.getItems().forEach(v->
+        				{
+        					
+    					((List<ClienteJSP>) listaJSP).add(v.getClienteJSP());
+    					
+            			
+        				});
+    				});
+    			}
+    		});
+		}
+		return listaJSP;
+	}
+	
 
 }

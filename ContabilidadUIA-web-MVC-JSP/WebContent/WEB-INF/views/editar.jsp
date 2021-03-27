@@ -64,12 +64,29 @@
 								            	</c:forEach>
 				                    </tbody>
 				    				</table>
-			            </td>                     
-	    				<td>Pendiente</a></td>
+			            </td>
+			            
+			                                 
+	    				<c:choose>
+                    <c:when test="${cliente.name == clienteActual}">
+	                    <td>                     
+		                    <table border=1>
+					        <tbody>
+							        	<c:forEach var="cheque" items="${cheques}">
+						                <tr>
+						                    <td><c:out value="${cheque.name}" /></td>
+						                    <td><c:out value="${cheque.id}" /></td>
+						                </tr>
+						            	</c:forEach>
+		                    </tbody>
+		    				</table>
+		    			</c:when>  
+		                    </c:choose>			    				
+	                    </td>                     
+	    				<td>  
 	    				<td>Pendiente</a></td>
 	    				<td>
-	    				
-	    				
+	    					    				
 	    				<table border="1">
 							<tr>
 							<td>id</td>

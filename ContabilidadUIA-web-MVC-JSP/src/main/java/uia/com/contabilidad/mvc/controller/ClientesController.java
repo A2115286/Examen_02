@@ -40,7 +40,8 @@ public class ClientesController {
 		model.addAttribute("clienteActual", this.dao.clienteId);
 		model.addAttribute("compras", this.getListaCompras());
 		model.addAttribute("cuentas", this.getListaCuentas());
-		return "verCompras";
+		model.addAttribute("cheques", this.getListaCheques());
+		return "verCheques";
 	}
 
 
@@ -55,9 +56,24 @@ public class ClientesController {
 		model.addAttribute("clienteActual", this.dao.clienteId);
 		model.addAttribute("compras", this.getListaCompras());
 		model.addAttribute("cuentas", this.getListaCuentas());
-		return "verCompras";
+		model.addAttribute("cheques", this.getListaCheques());
+		return "verCheques";
 	}
 	
+	@RequestMapping(value = "/cheques", method = RequestMethod.GET)
+	public String cargaCheques(@RequestParam String clienteName, 
+		      ModelMap model)
+	{
+		System.out.println("Pagina Compras solicitada, locale = ");
+
+		this.dao.getCheques(clienteName);;
+		model.addAttribute("clientes", getListaClientes());
+		model.addAttribute("clienteActual", this.dao.clienteId);
+		model.addAttribute("compras", this.getListaCompras());
+		model.addAttribute("cuentas", this.getListaCuentas());
+		model.addAttribute("cheques", this.getListaCheques());
+		return "verCheques";
+	}
 
 	@RequestMapping(value = "/editar", method = RequestMethod.GET)
 	public String editarCliente(@RequestParam String clienteName, 
@@ -71,6 +87,7 @@ public class ClientesController {
 		model.addAttribute("clienteActual", this.dao.clienteId);
 		model.addAttribute("compras", this.getListaCompras());
 		model.addAttribute("cuentas", this.getListaCuentas());
+		model.addAttribute("cheques", this.getListaCheques());
 		return "editar";
 	}
 	
@@ -89,6 +106,10 @@ public class ClientesController {
 	@ModelAttribute("listaCuentas")
 	   public ArrayList<ClienteJSP> getListaCuentas() {
 	      return this.dao.getListaCuentas();
+	   }
+	@ModelAttribute("listaCheques")
+	   public ArrayList<ClienteJSP> getListaCheques() {
+	      return this.dao.getListaCheques();
 	   }
 	
 }
